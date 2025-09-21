@@ -84,11 +84,9 @@ export function SEOHead({
       <meta name="msapplication-TileColor" content="#3b82f6" />
       <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
       
-      {/* DNS Prefetch and Preconnect */}
+      {/* DNS Prefetch */}
       <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
       <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
     </Head>
   );
 }

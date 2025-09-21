@@ -21,6 +21,11 @@ const eslintConfig = [
     ],
   },
   {
+    rules: {
+      "@next/next/google-font-preconnect": "off",
+    },
+  },
+  {
     files: ["**/__tests__/**/*", "**/*.test.*", "**/test/**/*"],
     rules: {
       "@next/next/no-img-element": "off",

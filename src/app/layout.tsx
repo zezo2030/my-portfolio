@@ -8,6 +8,7 @@ import { PerformanceMonitor } from "@/components/ui/PerformanceMonitor";
 import { PerformanceInitializer } from "@/components/ui/PerformanceInitializer";
 import { PerformanceChecklist } from "@/components/ui/PerformanceChecklist";
 import { AccessibilityProvider, SkipLink } from "@/components/ui";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({
   variable: "--font-inter",
@@ -50,8 +51,6 @@ export default function RootLayout({
         {/* DNS Prefetch for performance */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
         {/* Security headers */}
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />

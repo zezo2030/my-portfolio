@@ -221,6 +221,7 @@ export function Footer() {
                 : 'flex-col sm:flex-row justify-between items-center gap-4'
             }`}
             variants={itemVariants}
+            transition={itemTransition}
           >
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <span>© {currentYear} Portfolio. Made with</span>
