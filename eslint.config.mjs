@@ -20,6 +20,15 @@ const eslintConfig = [
       "next-env.d.ts",
     ],
   },
+  {
+    files: ["**/__tests__/**/*", "**/*.test.*", "**/test/**/*"],
+    rules: {
+      "@next/next/no-img-element": "off",
+      "@next/next/no-sync-scripts": "off",
+      "@next/next/no-css-tags": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+    },
+  },
 ];
 
 export default eslintConfig;

@@ -1,0 +1,26 @@
+{
+  "name": "Personal Portfolio",
+  "short_name": "Portfolio",
+  "description": "Professional portfolio showcasing skills and projects",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["portfolio", "professional", "developer"],
+  "lang": "en",
+  "dir": "ltr"
+}

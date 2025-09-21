@@ -1,26 +1,376 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Performance optimizations */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
+  .will-change-auto {
+    will-change: auto;
+  }
+
+  /* Smooth scrolling with offset for fixed header */
+  html {
+    scroll-padding-top: 80px;
+  }
+
+  /* Mobile-specific optimizations */
+  @media (max-width: 767px) {
+    html {
+      scroll-padding-top: 70px;
+    }
+    
+    /* Prevent horizontal scroll on mobile */
+    body {
+      overflow-x: hidden;
+    }
+    
+    /* Optimize touch targets for mobile */
+    button, a, input, textarea, select {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Better text rendering on mobile */
+    body {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+  }
+
+  /* Tablet optimizations */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    html {
+      scroll-padding-top: 75px;
+    }
+  }
+
+  /* Touch device optimizations */
+  @media (hover: none) and (pointer: coarse) {
+    /* Remove hover effects on touch devices */
+    .hover-only:hover {
+      transform: none !important;
+      scale: none !important;
+    }
+    
+    /* Larger touch targets */
+    button, a[role="button"] {
+      min-height: 48px;
+      padding: 12px 16px;
+    }
+  }
+
+  /* High DPI display optimizations */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Crisp text rendering */
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+
+  /* Landscape orientation on mobile */
+  @media (max-height: 500px) and (orientation: landscape) {
+    .min-h-screen {
+      min-height: 100vh;
+    }
+    
+    /* Reduce padding in landscape mode */
+    .landscape-compact {
+      padding-top: 2rem !important;
+      padding-bottom: 2rem !important;
+    }
+  }
+
+  /* Container queries for responsive components */
+  .container-responsive {
+    container-type: inline-size;
+  }
+
+  /* Focus improvements for accessibility */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Screen reader only content */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* Skip link styles */
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    :root {
+      --primary: 0 0% 0%;
+      --background: 0 0% 100%;
+      --foreground: 0 0% 0%;
+      --border: 0 0% 0%;
+    }
+
+    .dark {
+      --primary: 0 0% 100%;
+      --background: 0 0% 0%;
+      --foreground: 0 0% 100%;
+      --border: 0 0% 100%;
+    }
+
+    button, input, textarea, select {
+      border: 2px solid hsl(var(--foreground)) !important;
+    }
+  }
+
+  /* Focus trap for modals and menus */
+  .focus-trap {
+    position: relative;
+  }
+
+  .focus-trap:before,
+  .focus-trap:after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Ensure minimum touch target size */
+  button, 
+  input[type="button"], 
+  input[type="submit"], 
+  input[type="reset"], 
+  input[type="file"], 
+  label[for], 
+  select, 
+  [role="button"], 
+  [role="link"], 
+  [tabindex]:not([tabindex="-1"]) {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  @media (pointer: coarse) {
+    button, 
+    input[type="button"], 
+    input[type="submit"], 
+    input[type="reset"], 
+    input[type="file"], 
+    label[for], 
+    select, 
+    [role="button"], 
+    [role="link"], 
+    [tabindex]:not([tabindex="-1"]) {
+      min-height: 48px;
+      min-width: 48px;
+    }
+  }
+
+  /* Improved scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+  }
+
+  /* Safe area support for mobile devices */
+  .safe-area-container {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Mobile-specific optimizations */
+  .mobile-optimized {
+    /* Optimize for mobile performance */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  .touch-optimized {
+    /* Better touch interactions */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Prevent zoom on input focus on iOS */
+  @media screen and (max-width: 767px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    textarea,
+    select {
+      font-size: 16px !important;
+    }
+  }
+
+  /* Improve text rendering on mobile */
+  @media (max-width: 767px) {
+    body {
+      text-rendering: optimizeSpeed;
+      -webkit-font-smoothing: subpixel-antialiased;
+    }
+  }
+
+  /* Optimize animations for mobile */
+  @media (max-width: 767px) {
+    * {
+      animation-duration: 0.3s !important;
+      transition-duration: 0.3s !important;
+    }
+  }
+
+  /* Better focus indicators for keyboard navigation */
+  @media (hover: none) and (pointer: coarse) {
+    *:focus {
+      outline: 3px solid hsl(var(--primary));
+      outline-offset: 2px;
+    }
+  }
+
+  /* Landscape mobile optimizations */
+  @media (max-height: 500px) and (orientation: landscape) and (max-width: 900px) {
+    .landscape-compact {
+      padding-top: 1rem !important;
+      padding-bottom: 1rem !important;
+    }
+    
+    .landscape-compact > * {
+      margin-top: 0.5rem !important;
+      margin-bottom: 0.5rem !important;
+    }
+  }
 }
